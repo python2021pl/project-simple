@@ -18,9 +18,9 @@ class Paletka:
 
     def move(self, direction):
         if direction == "left":
-            self.paletka.x -= 5
+            self.paletka.x -= 10
         elif direction == "right":
-            self.paletka.x += 5
+            self.paletka.x += 10
 
     def bounce(self):
         # taki prosty zabieg nie wystarczy
@@ -38,8 +38,6 @@ class Paletka:
         return True
 
 
-
-
 def aktualizuj_pozycje_paletek():
     if keyboard.a:
         paletka_a.move("left")
@@ -49,6 +47,7 @@ def aktualizuj_pozycje_paletek():
         paletka_b.move("left")
     if keyboard.l:
         paletka_b.move("right")
+
 
 def update_ball_position():
     if ball.direction_x == "left":
@@ -74,6 +73,7 @@ def update_ball_position():
         ball.winner = "GRACZ A"
         ball.stop = True
         ball.game_run = False
+
 
 def sprawdz_czy_odbijemy():
     if paletka_a.bounce():
@@ -103,6 +103,7 @@ ball.direction_x = choice(("left", "right"))
 ball.direction_y = choice(("up", "down"))
 ball.speed = 2
 
+
 def draw():
     screen.blit("desert-1654439_1280.jpg", (0, 0))
     if not ball.start:
@@ -113,6 +114,7 @@ def draw():
     paletka_b.drawing()
     ball.draw()
 
+
 def update():
     if not ball.start and keyboard.space:
         ball.game_run = True
@@ -121,5 +123,6 @@ def update():
         update_ball_position()
         aktualizuj_pozycje_paletek()
         sprawdz_czy_odbijemy()
+
 
 pgzrun.go()
